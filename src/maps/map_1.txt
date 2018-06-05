@@ -1,0 +1,6 @@
+# width height
+7 7
+# number of boats of each size
+2
+3
+2
