@@ -289,7 +289,7 @@ public class Tabuleiro extends JFrame implements ActionListener {
 							}
 
 							// Se não for 0, mostra a imagem de navio destruído
-							else if (vetor[linha][i] != 0) {
+							else if (vetor[linha][i] != 0 && Botoes[linha][i].isEnabled()) {
 
 								tiroNoNavio(linha, i);
 
@@ -309,7 +309,7 @@ public class Tabuleiro extends JFrame implements ActionListener {
 							}
 
 							// Se não for 0, mostra a imagem de navio destruído
-							else if (vetor[i][coluna] != 0) {
+							else if (vetor[i][coluna] != 0 && Botoes[i][coluna].isEnabled()) {
 
 								tiroNoNavio(i, coluna);
 
@@ -332,7 +332,7 @@ public class Tabuleiro extends JFrame implements ActionListener {
 									}
 
 									// Se não for 0, mostra a imagem de navio destruído
-									else if (vetor[linha + k][coluna + i] != 0) {
+									else if (vetor[linha + k][coluna + i] != 0 && Botoes[linha + k][coluna + i].isEnabled()) {
 
 										tiroNoNavio(linha + k, coluna + i);
 
@@ -389,6 +389,25 @@ public class Tabuleiro extends JFrame implements ActionListener {
 					}
 
 					if (contadorNavio == 0) {
+						for (int k = 0; k < vetor.length; k++) {
+							for (int i = 0; i < vetor[0].length; i++) {
+
+								if (vetor[k][i] == 0) {
+
+									Botoes[k][i]
+											.setIcon(new ImageIcon(Tabuleiro.class.getResource("aguadetec.gif")));
+
+								}
+
+								// Se não for 0, mostra a imagem de navio destruído
+								else if (vetor[k][i] != 0) {
+
+									Botoes[k][i]
+											.setIcon(new ImageIcon(Tabuleiro.class.getResource("explodetec.gif")));
+
+								}
+							}
+						}
 						// Mostra mensagem caso o jogador vença
 						JOptionPane.showMessageDialog(this, "Parabéns, VOCÊ GANHOU! ", "Fim de Jogo",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -405,6 +424,25 @@ public class Tabuleiro extends JFrame implements ActionListener {
 					}
 
 					if (contadorTiro == 0) {
+						for (int k = 0; k < vetor.length; k++) {
+							for (int i = 0; i < vetor[0].length; i++) {
+
+								if (vetor[k][i] == 0) {
+
+									Botoes[k][i]
+											.setIcon(new ImageIcon(Tabuleiro.class.getResource("aguadetec.gif")));
+
+								}
+
+								// Se não for 0, mostra a imagem de navio destruído
+								else if (vetor[k][i] != 0) {
+
+									Botoes[k][i]
+											.setIcon(new ImageIcon(Tabuleiro.class.getResource("explodetec.gif")));
+
+								}
+							}
+						}
 						// Mostra mensagem de fim de jogo
 						JOptionPane.showMessageDialog(this, "Fim de Jogo. Sua pontuação: " + pontuacao, "Fim de Jogo",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -424,7 +462,7 @@ public class Tabuleiro extends JFrame implements ActionListener {
 
 			// Função do botão Novo Jogo
 			if (e.getSource() == novo) {
-				// Fecha a janela
+				
 				this.dispose();
 
 				// Cria um novo tabuleiro e seta a visibilidade
@@ -433,6 +471,10 @@ public class Tabuleiro extends JFrame implements ActionListener {
 
 				// Mostra mensagem de Jogo Reiniciado
 				JOptionPane.showMessageDialog(this, "Jogo reiniciado!", "Novo Jogo", JOptionPane.INFORMATION_MESSAGE);
+				// Fecha a janela
+				e.setSource(null);
+				this.dispose();
+
 			}
 		}
 	}

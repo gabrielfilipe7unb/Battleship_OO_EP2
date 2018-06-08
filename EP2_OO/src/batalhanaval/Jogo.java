@@ -38,13 +38,14 @@ public class Jogo {
 		for(int cont = 0; cont < navios.size(); cont++){
 			int contador = 0;
 			while(navios.get(cont).getQtdDeNavios() > contador) {				
-				
+				 linha = generate.nextInt(vetor.length); // Linha
+				 coluna = generate.nextInt(vetor[0].length);
 				// Cria a orientação do Navio. 0 Vertical. 1 Horizontal
 				int orientacao = generate.nextInt(2);
 
 				// Verifica se o navio cabe na posição do tabuleiro criada
 				cabe = cabeNavio(linha, coluna, orientacao, navios.get(cont).getTamanhoNavio(), vetor);
-				
+				System.out.println(cabe);
 				// Se o Navio não couber, gera outra posição
 				if(cabe == false){
 					while(cabe == false){
